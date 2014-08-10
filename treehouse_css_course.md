@@ -173,3 +173,110 @@ Explain the relationship between two selectors.
 `<h1></h1><p></p><a></a><p></p>`   
 Then in your CSS `h1 ~ p{color: blue}`  
 This would style all paragraph siblings, even those not adjacent to the `<h1>` (so it wouldn't matter in our example that there was an `<a>` tag in the way, the second `<p>` would still get styled).
+
+## Basic Attribute Selectors (Square brackets)
+Atribute selectors allow us to target elements based on a given attribute or value. 
+
+There are various different examples of attribute selectors:   
+`[class] {
+	background-color: green;
+	color: #fff;
+}`
+This would select all elements on the page that had a class attribute. 
+
+`a[class] {
+	background-color: green;
+	color: #fff;
+}`
+This would select all `<a>` elements that had a class attribute
+
+`a[class=foo] {
+	background-color: green;
+	color: #fff;
+}`
+This would select all `<a>` elements that had a class attribute with a value of foo. **But we should avoid this method for targetting specific classes, as the browser has to do extra work to match the elements - it's always better to use the CSS Class Selector method as discussed earlier**. 
+
+####Attribute selectors can be very useful though
+
+e.g. to target `<input> type attributes` in our form elements:  
+`<input type="text" name="email">
+ <input type="submit" name="submit">
+` 
+ 
+Then in the CSS:   
+`input[type="text"] {
+	width: 400px;
+	height: 300px;
+	border: 2px solid #000;
+}  
+input[type="submit"] {
+	width: 200px;
+	height: 30px;
+	border: none;
+	background-color: steelblue;
+	color: #fff;
+}
+`
+
+Another use might be to style links differently if they open in a new tab, by targeting the `target` attribute.
+`<a href="#" target="_blank">  
+Then in the CSS: 
+a[target="_blank"]{
+	text-decoration: none;
+	border-bottom: 2px solid crimson;
+}`
+
+**When using attribute selectors, bear in mind that they have the same level of specifity as Classes, as well as Psuedo Class selectors**
+
+
+##Psuedo Classes
+Psuedo classes are similar to classes, except:  
+* they are not explicitly defined in the mark up  
+* and they do not appear in the source code
+
+Psuedo classes select elements dynamically based on user interaction, the element's state, and more…
+
+First off, we'll look at the **Link Pseudo Classes**, which allow us to style links based on whether they've been visited or clicked on. 
+
+So to specifiy links which are yet to be clicked on (n.b. this will only work on those links that have an href attribute):   
+`a:link{
+	color: red;
+}`
+
+After the user has clicked on the link, it would adopt the browser's default visited styles (e.g. turns the link purple). But we can use the **visited psuedo class** to style it ourselves:  
+`a:visited{
+	color: green;
+}` 
+
+Now we can look at some ***User Action Psuedo Classes***, where the styles are applied based on the user's interaction with the element.   
+`a:hover{
+	color: white;
+	text-decoration: none;
+	background-color: tomato;
+}`
+
+**We DON'T just have to apply the hover psuedo class to links - you can apply them to any other elements, such as div's, headings, images for instance**
+
+Another User Action Psuedo Class is the Active Psuedo Class, i.e. when the user is clicking on a link (this styling would disappear if the user depresses the mouse button):   
+`a:active{
+	font-size: 26px;
+}`
+
+The final Psuedo Class we'll cover is the **Focus psuedo class**. The Focus Psuedo Class is:  
+* only applied to interactive elements like links and form elements.   
+* the styles are applied as soon as the element has receieved focus - focus happens when a browser realises a user is ready to interact with an element. e.g. when a user clicks in a form field, they are saying they are ready to interact with that element.   
+`input:focus {
+background-color: yellow;
+}` 
+
+A very good thing for accessbility, is to help those users who are keyboard tabbing through your site - you do this by styling every interactive element when it achieves the **focus state**:  
+`:focus{
+	background-color: yellow;
+}`
+
+
+
+
+
+
+
