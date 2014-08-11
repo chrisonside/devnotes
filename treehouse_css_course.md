@@ -298,5 +298,112 @@ e.g.
 }`
 Would select all the elements in the HTML document that are the only child of their parent. 
 
+##Substring Matching Attribute Selectors
+
+CSS added three powerful selectors, called Substring Matching Attribute Selectors. They have strong browser support, from IE7 upwards! These allow us to target specific pieces of html attributes. These pieces are called substrings. 
+
+E.g if you wanted to style all of the links in your project that are external links (rather than relative internal links) - in this case we use the `^` selector to say that this piece (attribute)'s value should `begin with` http://:  
+`a[href^="http://"]{
+	color: ;
+}
+`
+
+Or you could target the mailto link for some special styling:  
+`a[href^="http:"] {
+	color: white;
+	background-color: tomato;
+	padding: 4px 8px;
+	text-decoration: none;
+}`
+
+Or we could use the `ends with` selector `$` - `a[href$=".pdf"] {
+	background: url('../images/pdf.png') no-repeat 0 2px;
+	padding-left: 25px;
+}`
+
+Finally the `contains` selector - `*`:  
+`img[src*="thumbnail"] {
+	border: 5px solid black;
+}`
+
+##Psuedo-Classes continued - :nth-child
+
+This is one of the most powerful and useful structural psuedo classes, because we are not limited to the first and last elements of a parent only. We can target any child element or any combination of child elements. 
+
+**nth-child uses a function like syntax that allows an argument to be passed.**  
+e.g.  
+`li:nth-child(even){
+	color: white;
+	background-color: black;
+}`  
+or  
+`li:nth-child(3){
+	color: red;
+}`
+or we can use **EXPRESSIONS** to select a combination of child elements - this is a very common and powerful use of nth child. The basic Expression syntax is as follows, where a and b are represented by numbers, and the value of n never changes:  
+`li:nth-child(an+b){
+	color: red;
+}`  
+
+So the `b` value is an `offset value`, that determines the first element selected. 
+
+The `a` value determines the cycle of elements to select after the first one (b) has been selected. 
+
+Think of `n` simply like a counter, almost like the **a** value to the browser. So in this example, the `n` counter is telling the browser to select **every 2nd** list item **starting on the third** list item:  
+`li:nth-child(2n+3){
+	color: white;
+	background-color: black;
+}` 
+
+n.b. you can ommit the number for `a` if you are selecting each element after the offset:   
+`li:nth-child(n+3){
+	color: red;
+}`
+
+Likewise if there is no offset, you can ommit the b value:   
+`li:nth-child(2n){
+	color: white;
+}`  
+You can also do this last one if the `a` and `b` values are the same. 
+
+**If you only wanted to select the first five list items for example, you can use a `negative a value` and go backwards from the offset**:  
+`li:nth-child(-n+5){
+	color: white;
+	background: black;
+}`
+N.b. remember -n is the same as writing -1n
+
+<http://jsfiddle.net/chrisonside/gou82sgz/>
+
+## Nth-last-child structural psuedo class
+Similar to nth child, there is also the nth-last-child structural pseudo class - the difference between this and nth child is that **it starts counting from the last child** - so 5 (`b`) in this example would mean 5 from the end, rather than 5 from the top.  
+`li:nth-last-child(-n+5){
+	color: white;
+	background: black;
+}`  
+So this selector would now target all of the list items that appear after the fifth list-item from the bottom.
+<http://jsfiddle.net/chrisonside/tek2Lnn4/>
+
+##nth-of-type psuedo class
+This structural pseudo-class is even more speficic in that it allows us to target elements based on position, but only if they are a particular types of element.  
+`div:nth-of-type(2){
+	background-color: steelblue;
+}`
+
+##nth-last-of-type
+Starts counting from the last child.  
+`div:nth-last-of-child(1){
+	background-color: steelblue;
+}`
+
+##only-of-type psuedo class 
+Selects an element that's the only one of it's type within the parent.   
+`p:only-of-type` {
+	color: blue;
+}
+
+
+
+
 
 
