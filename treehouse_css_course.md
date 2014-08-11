@@ -274,9 +274,29 @@ A very good thing for accessbility, is to help those users who are keyboard tabb
 	background-color: yellow;
 }`
 
+## Structural Psuedo Classes
 
+Using structural psuedo classes we can write more efficient CSS, by targeting elements based in the HTML document. 
 
+####First child
+`li:first-child {
+	background-color: steelblue;
+	color: white;
+}`  
+This selects the very first child of the `<ul>`
 
+####Also works with last child
+`li:last-child {
+	border: none;
+}` 
+
+####Only child
+The only-child structural pseudo class will target the element if it's the **only child** of its parent. 
+e.g.   
+`:only-child{
+	background-color: magnolia;
+}`
+Would select all the elements in the HTML document that are the only child of their parent. 
 
 
 
