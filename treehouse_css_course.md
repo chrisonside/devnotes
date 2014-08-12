@@ -402,7 +402,70 @@ Selects an element that's the only one of it's type within the parent.
 	color: blue;
 }
 
+##Additional pseudo classes
 
+`:root` - selects the element that is the root of the document - usually the HTML element. n.b. the :root psuedo class has more specifity than the HTML type selector. 
+
+`:target` - use this to target elements based on the URL. This uses fragment identifiers - means for instance you can have an anchor link to a div id in the page, and when you click on the link, the target div takes on the target selector styles (e.g. it might change color).
+
+`:empty` - target elements that have no child elements or content at all. You might use this for if an empty results set is returned - you might want to highlight this to a user - e.g. no results found, and style with appropriate colours.
+
+`:not` - negation psuedo class - a special psuedo class that selects every element except the one we specify.     
+e.g.   
+div:not(:empty){
+	background-color: tomato;
+}  
+This will target all divs that are not empty.   
+div:not([id="s1"]){
+	background-color: tomato;
+}  
+This will target all of the divs that do not have a fragment identifier of s1. 
+
+## UI Element States Pseudo Classes
+
+UI Element States Pseudo Classes let us target elements based on certain user interaction states - `most commonly used when styling form elements`.
+
+`:enabled` - selects UI elements that are in an enabled state, such as a button or a text field. Note, when a form element is enabled, it can be active and gain focus.      
+So in this example, we will target the input text fields on the form, when they are in their enabled state. 
+`input[type="text"]:enabled{
+	background: #efefef;
+}`
+
+`:disabled` - selects UI elements like buttons and form inputs that are in a disabled state (so cannot be selected, clicked on, or accept text input). 
+`input[type="text"]:disabled{
+	background: #efefef;
+}`
+
+`:checked` - target checked elements. Useful! This example uses the adjacent sibling combinator to select the label of the checked radio button.      
+`input[type="radio"]:checked + label{ 
+	color: tomato;
+}`
+
+##Psuedo-elements - ::first-line and ::first-letter
+
+Pseudo elements target **virtual elements** that are not defined in the markup and don't appear in the source code. 
+
+`Remember the difference between psuedo classes and psuedo elements, is psuedo classes target actual elements that describe a certain state, while pseudo elements let us style certain parts of a document that don't always exist as elements (or we can't really target with a simple selector).`
+
+**Sometimes psuedo elements are written with double colons - this is used to distinguish between psuedo elements and psuedo classes**  
+`<div class="intro">`   
+Then in your CSS:  
+`.intro::first-line{ 
+	color: royalblue;
+	font-weight: bold;
+	font-size: 32px;
+}`   
+The first-line psuedo selector will always style the first line of text rendered by the browser (it's a virtual element as the amount of text on the first line depends on the size of the browser).
+  
+**A cool effect is to select just the first letter, for a Drop Cap effect**  
+`.intro::first-letter {
+	float: left;
+	margin: 10px 10px;
+	padding: 5px 10px;
+	background: #e0e0e0;
+	font-size: 100px;
+	line-height: 1;
+}`
 
 
 
