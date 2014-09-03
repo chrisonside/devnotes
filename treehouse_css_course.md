@@ -439,7 +439,8 @@ So in this example, we will target the input text fields on the form, when they 
 `:checked` - target checked elements. Useful! This example uses the adjacent sibling combinator to select the label of the checked radio button.      
 `input[type="radio"]:checked + label{ 
 	color: tomato;
-}`
+}`  
+<http://jsfiddle.net/chrisonside/hdja0mju/>
 
 ##Psuedo-elements - ::first-line and ::first-letter
 
@@ -466,6 +467,8 @@ The first-line psuedo selector will always style the first line of text rendered
 	font-size: 100px;
 	line-height: 1;
 }`
+
+<http://jsfiddle.net/chrisonside/gvrn3gs6/>
 
 
 
