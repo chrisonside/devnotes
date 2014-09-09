@@ -34,8 +34,47 @@ House to Home was 285 requests and 3.2MB download - so I didn't need to be too w
 ##Negative margin left and top for gutters in grids
 These are for grid gutters, look at how I implemented them in Beko for an example. Also look at Rich's grid code too. 
 
+Also when using grids, Rich had put font-size: 0; in the grid class - this is to stop the space between the gi items. Remember, I will have to accomodate for this in my code, and set a font-size for the elements in my grids (otherwise they will be zero font size).
+
 ##When doing JavaScript, always first consider how people without Javascript will see things. 
 So I had a main div at the top with a kitchen image, and then several touchpoints laid on top, which had accompanying divs appear when clicked upon. The show and hide of these divs would be done with JavaScript, but to make the site accessible (and look good) for those who disabled JavaScript, I stacked the divs horizontally under the main image (with 25% width each), and gave them a header each so that they'd make sense as a standalone element (when not next to the touchpoint) - then if js was enabled, I removed the headings, hid all but the inital div, and added the correct positioning for each div. 
 
 ##When considering if something should be a background image or normal image…
-Consider whether it belongs in the content of the page. If it's just decoration, backgroudn is fine. But if the page would make much more sense to a screenreader for instance if the image was there, it belongs in the content.  
+Consider whether it belongs in the content of the page. If it's just decoration, backgroudn is fine. But if the page would make much more sense to a screenreader for instance if the image was there, it belongs in the content.
+
+##When using the translate -50%…
+Remember that translate means move something relative to itself! On the other hand, if you position something absolutely, that's positioning it relative to its parent.
+
+##When it comes to things like buttons and touchpoints, use CSS, not images! 
+I was able to make a great circle button with a border, plus sign and hover states in CSS, whereas before I'd used images for that sort of thing. 
+
+## Don't use camel case in CSS! 
+Only use hyphens for CSS class and ID names
+
+##When it comes to transitions, you can name various properties, and stagger those transitions
+E.g. 
+`transition: opacity 0.5s ease-in-out,
+				z-index 0s 0.5s;`
+I used this code as I wanted the z-index to kick in after my opacity had done it's stuff (to avoid a jumpy effect). 
+
+##Jquery notes
+There were a couple of ocassions I had to make things jquery objects, e.g. `$(this)` or `$(anchor)`.
+
+You can edit the DOM with jquery, for instance you can `.prependTo()` or `.appendTo()` divs. 
+
+The foreach loop in jquery is as follows, using an example of looping through all elements with a class of .touchpoints: 
+`var touchpoints = $('.js-touchpoint');  
+$.each(touchpoints, function(i, item){
+	// Code goes in here  
+});`
+
+You can pass things into a foreach, in this case we passed in i and item. 'I' will be set to the number of the loop, item will be set to the item that's being looped over. 
+
+To **prevent default** behaviour, such as trying to scroll down to an anchor or click through to a link, pass through e into the annoymous function. e.g.   
+`whatever.click((e){
+	e.preventDefault();
+	// Then the rest of your code
+});`
+
+When it comes to naming conventions: 
+* Use js-classname for js-hooks only! (don't use them in your CSS styling)
