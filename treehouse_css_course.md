@@ -471,5 +471,40 @@ The first-line psuedo selector will always style the first line of text rendered
 <http://jsfiddle.net/chrisonside/gvrn3gs6/>
 
 
+##:before and :after psuedo elements
+With before and after psuedo elements, you can insert **virtual** elements **before or after the content of an html element**.
+* These virtual elements are viewable to the user  
+* And are styable in the CSS  
+* But they do NOT appear in the sourcecode  
+* So effectively, we can add to our html from our CSS  
+* This is called `generated content`
+* So generated content is only rendered, but DOES NOT become part of the actual DOM Tree. This is really powerful, as you can have mulitple psuedo elements for only one html element. 
+* Note that pseudo elements can inherit properties from their parent elements
+* Important thing to remember, is that psuedo elements are inserted INTO the html element, as child content - so they are INSIDE ITS BOX MODEL. If you put a border on the HTML element (all html elements being rectangular boxes after all), you would see the pseudo elements are inserted into this box, but before or after the text inside that box.
+* Befores and afters are generally used for decorative content or enhancements. 
+* Supported in IE8 upwards.    
 
+You have to use the content property. And as a minimum, it must have an empty space as it's value. Or you can insert images, or text, or #&42; etc.
 
+Cool use of before and afters: 
+**We can use simple functions to return generated content, based on an element's attribute. So:**
+`<a class="dload" href="examples.pdf" title="PDF download">Blah</a>`
+Then in the CSS: 
+`.dload::after{  
+content: attr(title);  
+color: tomato;  
+padding-left: 10px;  
+}`
+
+**Another common trick, is to leave the content as an empty space, but then insert shapes into the page - Generated shapes. So:**
+`<div class="box">Div with generated shapes</div>`
+Then: 
+`.box::before{content: ""; display: inline-block; width: 30px; height: 30px; border-radius: 50%; background-color: royalblue; margin: 15px 15px 0 15px;}`
+This would create a blue bullet point style circle before the text in that div. 
+
+* Note that you don't need a space between the "" when it's just a blank space for the content value.
+* If you are inserting an image as a before or after, you don't have quotes around the content property's value - if you did it would just insert the text. 
+* This is always the case if you are defining a function as the content property's value - e.g. url() or attr()
+
+##Great summary video on advanced selectors in CSS
+<http://teamtreehouse.com/library/css-foundations/advanced-selectors/selectors-review>
