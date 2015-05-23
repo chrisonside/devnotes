@@ -52,5 +52,47 @@ Using htaccess for password protection is not ideal for all situations - you cou
 
 Read this for more detail on encrypting user passwords and configuring the .htaccess file accordingly <http://www.htmlgoodies.com/beyond/webmaster/article.php/3899661>
 
-  
 
+##Example of .htaccess file we used
+This was a .htaccess file that Eduardo added to the Symfony starter template, inside the web/ folder. It was required for the routing to work properly. 
+
+Don't agonise over what's in this htaccess file says Eduardo, as delving deep into it crosses over into Dev Operations territory, which we don't need to know about in complete depth. But a general understanding helps - also with this particular file, the main thing was that it worked (neither of us were sure what a couple of the final things listed did, such as the 'we check if the .html version is here (caching)').
+
+	Options +FollowSymLinks +ExecCGI
+
+	<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# uncomment the following line, if you are having trouble
+	# getting no_script_name to work
+	RewriteBase /
+
+	# we skip all files with .something
+	#Â RewriteCond %{REQUEST_URI} \..+$
+	#RewriteCond %{REQUEST_URI} !\.html$
+	#RewriteRule .* - [L]
+
+	# we check if the .html version is here (caching)
+	RewriteRule ^$ index.html [QSA]
+	RewriteRule ^([^.]+)$ $1.html [QSA]
+	RewriteCond %{REQUEST_FILENAME} !-f
+
+	# Backend rewrite rule
+	# RewriteRule ^/admin/(.*)$ backend.php/$1 [QSA,L]
+	# no, so we redirect to our front web controller
+	RewriteRule ^(.*)$ index.php [QSA,L]
+	</IfModule>
+
+
+Here are explanations for a couple of common things you might find though: 
+
+`Options +FollowSymLinks +ExecCGI`
+
+In computing, a symbolic link (also symlink or soft link) is a special type of file that contains a reference to another file or directory in the form of an absolute or relativepath and that affects pathname resolution
+
+Common Gateway Interface (CGI) is a standard method used to generate dynamic content on Web pages and Web applications. CGI, when implemented on a Web server, provides an interface between the Web server and programs that generate the Web content. These programs are known as CGI scripts or simply CGIs; they are usually written in a scripting language, but can be written in any programming language.
+
+`<IfModule mod_rewrite.c>  
+RewriteEngine On`
+
+A rewrite engine is software located in a Web application framework running on a Web server that modifies a web URL's appearance. Many framework users have come to refer to this feature as a "Router". This modification is called URL rewriting. Rewritten URLs (sometimes known as short, pretty or fancy URLs, search engine friendly - SEF URLs, or slugs) are used to provide shorter and more relevant-looking links to web pages. The technique adds a layer of abstraction between the files used to generate a web page and the URL that is presented to the outside world.
