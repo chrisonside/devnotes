@@ -19,7 +19,7 @@ One thing to note, is that if it's an SSL page, it's really expensive to cache a
 
 You can see what's cached (and how long for) at the Symfony level, using the Symfony task bar - there is a red box around cached things, and it tells you the cache time. 
 
-When it comes to getting a site onto Akamai, you can either do it all via Akamai (but it's really time-consuming). Or Alan Lapthorn set things up so that we can just put in cache headers that Akamai reads (e.g. "cache me for 15 minutes").
+When it comes to getting a site onto Akamai, you can either do it all via Akamai (but it's really time-consuming). Or Sys Ad can set things up so that we can just put in cache headers that Akamai reads (e.g. "cache me for 15 minutes").
 
 
 ##It's vital to get proper content onto preprod
