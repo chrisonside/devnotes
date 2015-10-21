@@ -84,4 +84,12 @@ The padding-bottom: 56.25% means:
 * meaning the video container div will always maintain the 16:9 ratio that videos have, no matter what the width.
 * So it's scalable. We didn't set a width for the video-container div, meaning it takes up the width afforded to it by its parent div. But no matter what the width, the height of the div will scale accordingly due to our 56.25% declaration. 
 
+###Brightcove limitations
+
+Brightcove can be hard to style exactly as you want, as does things like insert unhelpful tags (e.g. the span tag in IE)
+
+If you want a background video, you can't just grab the video source and chuck it in a html5 tag. However, with Vimeo, you can do this - so you have the normal option of embedding a Vimeo player (which vimeo have configured to work across as many browsers as possible), or you can just grab a video's Vimeo source url and put this inside a html5 video tag as the source. So Vimeo is more configurable and we can do more with it, particularly when it comes to background videos. 
+
+Vimeo also has superior stats
+
 
