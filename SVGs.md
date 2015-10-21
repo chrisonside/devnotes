@@ -364,7 +364,7 @@ Finally, if icons aren't mission critical, and so you're not concerned by them n
 
 
 
-##jQuery ccan't add a class to an SVG.
+##jQuery can't add a class to an SVG.
 
 http://stackoverflow.com/questions/8638621/jquery-svg-why-cant-i-addclass
 
